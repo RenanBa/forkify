@@ -1,2 +1,2 @@
-console.log('Imported module');
-export default 23;
+console.log('Imported module Hey');
+export default 897;

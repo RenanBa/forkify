@@ -4,10 +4,12 @@ module.exports = {
     // entry: ['./src/js/index.js']
     entry: './src/js/index.js',  // file to look when the experiment is started
     output: {
-        path: path.resolve(__dirname, 'dist/js'), // this bundle the dist folder in one js file
-        filename: 'bundle.js'
+        path: path.resolve(__dirname, 'dist'), // this bundle the dist folder in one js file
+        filename: 'js/bundle.js'
     },
-    mode: 'development'
+    devServer: {
+        contentBase: './dist'
+    }
 };
 
 
