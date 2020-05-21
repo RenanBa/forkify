@@ -1,4 +1,9 @@
-import test from './test';
-const x = 23;
+import axios from 'axios';
 
-console.log(`${test} and ${x}` );
+async function getResults(query) {
+    const res = await axios(`https://forkify-api.herokuapp.com/api/search?&q=${query}`);
+    const recipes = res.data.recipes;
+    console.log(recipes)
+    console.log(res.data)
+}
+getResults("pizza");
