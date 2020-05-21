@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     // entry: ['./src/js/index.js']
-    entry: './src/js/index.js',  // file to look when the experiment is started
+    entry: ['babel-polyfill', './src/js/index.js'],  // file to look when the experiment is started
     output: {
         path: path.resolve(__dirname, 'dist'), // this bundle the dist folder in one js file
         filename: 'js/bundle.js'
@@ -16,24 +16,16 @@ module.exports = {
             filename: 'index.html',
             template: './src/index.html'
         })
-    ]
-};
-
-
-// babel file
-/*
-{
-    "presets": [
-        ["@babel/env", {
-            "useBuiltIns": "usage",
-            "corejs": "3",
-            "targets": {
-                "browsers": [
-                    "last 5 versions",
-                    "ie >= 8"
-                ]
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.js$/, // using regex to test files that ends with js
+                exclude: /node_modules/, // regex to not include node_modules files folder
+                use: {
+                    loader: 'babel-loader'
+                }
             }
-        }
-    ]
-}
-*/
+        ]
+    }
+};
