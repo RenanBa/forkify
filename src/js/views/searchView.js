@@ -14,8 +14,9 @@ export const clearResults = () => {
 const limitRecipeTitle = (title, limit = 17) => {
     const newTitle = [];
     if (title.length > limit) {
-        title.split(' ').reduce((acc, curr) => {
-            if (acc + curr.length <= limit) {
+        // look into each word in the title and check if exceed limit
+        title.split(' ').reduce((acc, curr) => { // acc is the accumulator, starts as 0
+            if (acc + curr.length <= limit) { // and curr is current word in the array
                 newTitle.push(curr);
             }
             return acc + curr.length;
@@ -79,7 +80,8 @@ export const renderResults = (recipes, page = 1, resPerPage = 10) => {
     const start = (page-1) * resPerPage; // implement later
     const end = page * resPerPage;
 
-    recipes.slice(start, end).forEach(renderRecipe);
+    // indirectly add each element into renderRecipe call.
+    recipes.slice(start, end).forEach(renderRecipe); // same as: .forEach(el => renderRecipe(el))
 
     // render pagination buttons
     renderButtons(page, recipes.length, resPerPage);

@@ -1,4 +1,5 @@
 import Search from './models/Search';
+import Recipe from './models/Recipe';
 import * as searchView from './views/searchView';
 import { elements, renderLoader, clearLoader } from './views/base';
 
@@ -10,6 +11,7 @@ import { elements, renderLoader, clearLoader } from './views/base';
  */ 
 const state = {}; // global state
 
+/** Search Controller */
 const controlSearch = async () => { // using 'async' function to be able to use 'await' 
     // 1) get query from the view
     const query = searchView.getInput();
@@ -21,7 +23,7 @@ const controlSearch = async () => { // using 'async' function to be able to use 
         // 3) Prepare UI for result
         searchView.clearInput();
         searchView.clearResults();
-        renderLoader(elements.searchRes);
+        renderLoader(elements.searchRes); // show spin while waiting response
 
         // 4) Search for recipes
         await state.search.getResults(); // wait for promise to return to then proceed
@@ -32,6 +34,7 @@ const controlSearch = async () => { // using 'async' function to be able to use 
     }
 }
 
+// search for type of food
 elements.searchForm.addEventListener('submit', event => {
     event.preventDefault();
     controlSearch();
@@ -47,3 +50,9 @@ elements.searchResPages.addEventListener('click', e => {
 })
 
 
+
+/** Recipe controller */
+
+const r = new Recipe(47746);
+r.getRecipe()
+console.log(r);
