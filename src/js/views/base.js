@@ -2,7 +2,8 @@ export const elements = {
     searchForm: document.querySelector('.search'),
     searchInput: document.querySelector('.search__field'),
     searchResList: document.querySelector('.results__list'),
-    searchRes: document.querySelector('.results') // select to render spinner loader
+    searchRes: document.querySelector('.results'), // select to render spinner loader
+    searchResPages: document.querySelector('.results__pages')
 };
 
 export const elementStrings = {
