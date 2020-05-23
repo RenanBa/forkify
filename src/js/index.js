@@ -144,6 +144,7 @@ elements.shopping.addEventListener('click', e => {
  * Like controller
  */
 state.likes = new Likes(); // temporary here. NEED TO DELETE
+likeView.toggleLikeMenu(state.likes.getNumLikes());// temporary here. NEED TO DELETE
 
 const controlLike = () => {
     if (!state.likes) state.likes = new Likes();
@@ -164,7 +165,7 @@ const controlLike = () => {
 
         // Add like to the UI list
         console.log(state.likes);
-
+        likeView.renderLike(newLike);
     } 
     // user has likeed the current recipe
     else {
@@ -175,8 +176,11 @@ const controlLike = () => {
         likeView.toggleLikeBtn(false);
         
         // Remove like from the UI list
+        likeView.deleteLike(currentID);
     }
-}
+
+    likeView.toggleLikeMenu(state.likes.getNumLikes());
+};
 
 
 // Handling recipe buttons click
