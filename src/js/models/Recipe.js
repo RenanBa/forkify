@@ -38,6 +38,7 @@ export default class Recipe {
         // to make the margements uniform we use these two arrays, the first is what we don't want, and the second is the replacement
         const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'pounds'];
         const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'pound'];
+        const units = [...unitsShort, 'kg', 'g']
         
         // map the ingredients 
         const newIngredients = this.ingredients.map(el => {
@@ -52,7 +53,7 @@ export default class Recipe {
 
             // 3) Parse ingredients into count, unit and ingredient
             const arrIng = ingredient.split(' ');
-            const unitIndex = arrIng.findIndex(el2 => unitsShort.includes(el2));
+            const unitIndex = arrIng.findIndex(el2 => units.includes(el2));
 
             let objIng;
             if (unitIndex > -1) {
