@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack --mode development",
     "start": "webpack-dev-server --mode development --open",
-    "build": "yarn netlify-lambda build src/lambda webpack --mode production"
+    "build": "webpack --mode production build"
   },
   "author": "Barbosa de Souza",
   "license": "MIT",
