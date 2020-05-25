@@ -143,8 +143,6 @@ elements.shopping.addEventListener('click', e => {
 /**
  * Like controller
  */
-state.likes = new Likes(); // temporary here. NEED TO DELETE
-likeView.toggleLikeMenu(state.likes.getNumLikes());// temporary here. NEED TO DELETE
 
 const controlLike = () => {
     if (!state.likes) state.likes = new Likes();
@@ -181,6 +179,20 @@ const controlLike = () => {
 
     likeView.toggleLikeMenu(state.likes.getNumLikes());
 };
+
+// Restore liked recipes when page loads
+window.addEventListener('load', () => {
+    state.likes = new Likes();
+
+    // Restore likes
+    state.likes.readStorage();
+
+    // toggle like menu button
+    likeView.toggleLikeMenu(state.likes.getNumLikes());
+
+    // Render the existing likes
+    state.likes.likes.forEach(like => likeView.renderLike(like));
+})
 
 
 // Handling recipe buttons click
