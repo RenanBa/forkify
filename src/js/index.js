@@ -16,8 +16,6 @@ import { elements, renderLoader, clearLoader } from './views/base';
  */ 
 const state = {}; // global state
 
-window.state = state; // adding to global access for test. NEED TO DELETE.
-
 /** Search Controller */
 const controlSearch = async () => { // using 'async' function to be able to use 'await' 
     // 1) get query from the view
@@ -67,7 +65,6 @@ elements.searchResPages.addEventListener('click', e => {
 const controlRecipe = async () => {
     // get ID frm url
     const id = window.location.hash.replace('#', '');
-    console.log(id);
 
     if (id) {
         // prepare the UI for changes
@@ -97,11 +94,10 @@ const controlRecipe = async () => {
             );
 
         } catch (error){
-            console.log(error)
-            alert('Error processing recipe')
+            alert('Error processing recipe');
         }
     }
-}
+};
 
 // adding global event listener to multiple events using array and window
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
@@ -118,8 +114,8 @@ const controlList = () => {
     state.recipe.ingredients.forEach(el => {
         const item = state.list.addItem(el.count, el.unit, el.ingredient);
         listView.renderItem(item);
-    })
-}
+    });
+};
 
 // Handle delete and update list item events
 elements.shopping.addEventListener('click', e => {
@@ -138,7 +134,7 @@ elements.shopping.addEventListener('click', e => {
         const val = parseFloat(e.target.value, 10);
         state.list.updateCount(id, val);
     }
-})
+});
 
 /**
  * Like controller
@@ -162,7 +158,6 @@ const controlLike = () => {
         likeView.toggleLikeBtn(true);
 
         // Add like to the UI list
-        console.log(state.likes);
         likeView.renderLike(newLike);
     } 
     // user has likeed the current recipe
@@ -192,7 +187,7 @@ window.addEventListener('load', () => {
 
     // Render the existing likes
     state.likes.likes.forEach(like => likeView.renderLike(like));
-})
+});
 
 
 // Handling recipe buttons click
@@ -218,8 +213,4 @@ elements.recipe.addEventListener('click', e => {
         // Like controller
         controlLike();
     }
-    console.log(state.recipe)
-})
-
-
-window.l = new List();
+});

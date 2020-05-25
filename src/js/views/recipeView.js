@@ -1,22 +1,26 @@
 import { elements } from "./base";
-import { Fraction } from 'fractional'; // conver mergement. 0.333333 to 1/3
+import { Fraction } from 'fractional'; // conver mergement. 1.333333 to 1/3
 
 export const clearRecipe = () => {
     elements.recipe.innerHTML = '';
 }
 
+
 const formatCount = count => {
     if (count) {
-        const [int, dec] = count.toString().split('.').map(el => parseInt(el, 10));
+        const newCount = Math.round(count * 10000) / 10000;
 
-        if (!dec) return count;
+        // splite the number before and after the dot. Ex.: 2.5 -> [2, 5]
+        const [int, dec] = newCount.toString().split('.').map(el => parseInt(el, 10));
+
+        if (!dec) return newCount;
 
         if (int === 0) {
-            const fr = new Fraction(count);
+            const fr = new Fraction(newCount); // external package
             return `${fr.numerator}/${fr.denominator}`;
         }
         else {
-            const fr = new Fraction(count - int);
+            const fr = new Fraction(newCount - int);
             return `${int} ${fr.numerator}/${fr.denominator}`;
         }
     }
